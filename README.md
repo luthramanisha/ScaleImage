@@ -34,9 +34,5 @@ four points or pixels in image. Thus, the average weight of four neighbourhood p
 is shown in Figure 1, (i) the original image, (ii) Nearest neighbour Interpolation results and (iii) Bilinear Interpolation results.
 
 ###Implementation
-The algorithm has been realized in the implementation `BitmapOperation ::
-performBilinear` method. That is supported by utility methods and suboperation methods BitmapOperation :: vectorT oData, BitmapOperation ::
-copyOldT oNewP ixels, BitmapOperation :: borderRows and BitmapOperation ::
-borderCols methods. The functionality of the aforementioned sub-routines
-is explained as follows:
+The algorithm has been realized in the implementation `BitmapOperation ::performBilinear` method. That is supported by utility methods and suboperation methods `BitmapOperation :: vectorToData`, `BitmapOperation ::copyOldToNewPixels`, `BitmapOperation :: borderRows` and `BitmapOperation :: borderCols` methods. 
 
