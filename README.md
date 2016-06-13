@@ -1,6 +1,5 @@
 # Scale Image
-Two algorithms for scaling image is implemented in this repository. One is nearest neighbor interpolation method, second is 
-bilinear interpolation method without use of any image processing library.
+Implementation of bilinear interpolation algorithm improving the nearest neighbor interpolation method without use of any image processing library.
 
 ##Program description
 The program is a command line tool. It is intended to allow a user to scale
