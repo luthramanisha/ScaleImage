@@ -11,40 +11,6 @@ using namespace std;
 BitmapOperation::BitmapOperation(double factor) : _factor(factor) {
 	//const
 }
-
-/*
-* @function to perform nearest neighbor intepolation for bitmap images
-* result is saved in out.bmp image
-*/
-
-void BitmapOperation::perform(Bitmap & bmp)
-{
-	cout << "Performing original interpolation \n";
-	Bitmap::PixelData oldPixelData = bmp.getPixelData();
-	int oldWidth = oldPixelData[0].size(), oldHeight = oldPixelData.size();
-	int newWidth = (unsigned int)(oldWidth * _factor), newHeight = (unsigned int)(oldHeight * _factor);
-
-	Bitmap::PixelData newPixelData;
-	double j = 0;
-//#pragma omp parallel
-	for(int i = 0; i < newHeight; ++i)
-	{
-		std::vector<RGBPIXEL> newRow(newWidth);
-		newPixelData.push_back(newRow);
-		double k = 0;
-//#pragma omp single
-		for(auto & pixel : newPixelData[i])
-		{
-//#pragma omp task
-			auto oldRow = oldPixelData[(unsigned int)(j)];
-			pixel = oldRow[(unsigned int)(k)];
-			k += 1.0/_factor;
-		}
-		j += 1.0/_factor;
-	}
-
-	bmp.setPixelData(newPixelData);
-}
 /*
 * @function to extract color data from pixel data
 * @param oldW, oldH, _oldPixel, _oldData
@@ -130,7 +96,9 @@ void BitmapOperation::borderCols(Bitmap::PixelData & newPixelData, int newX, int
 
 /*
 * Four point bilinear interpolation algorithm.
-* Source: P.R. Smith, "BILINEAR INTERPOLATION OF DIGITAL IMAGES" ,* https://en.wikipedia.org/wiki/Bilinear_interpolation* 1. First we enlarge the image
+* Source: P.R. Smith, "BILINEAR INTERPOLATION OF DIGITAL IMAGES" ,
+* https://en.wikipedia.org/wiki/Bilinear_interpolation
+* 1. First we enlarge the image
 * 2. Then we interpolate
 */
 void BitmapOperation::performBilinear(Bitmap & bmp)
