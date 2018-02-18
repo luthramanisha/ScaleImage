@@ -1,7 +1,7 @@
 # Scale Image
 Implementation of bilinear interpolation algorithm improving the nearest neighbor interpolation method without use of any image processing library.
 
-##Program description
+## Program description
 The program is a command line tool. It is intended to allow a user to scale
 a bitmap image. It will always write the output to ’out.bmp’ in the current
 directory. To do so it accepts program options in this format:
@@ -15,7 +15,7 @@ E.g. −s 2.75 will increase the image size by a factor 2.75
 The program is restricted to work with 24 bit RGB Bitmaps without color
 palette.
 
-###Comparison
+### Comparison
 The nearest neighbor (NN) interpolation algorithm chooses a value
 of the nearest pixel for the unknown interpolated pixel. The logic is very simple and works well for images without any curves, for eg., in the task folder
 : ’stripes.bmp’, ’box.bmp’. However, for the images with curves, for eg.,
@@ -32,6 +32,6 @@ is done in both directions x and y. In the end, these two linear interpolation e
 four points or pixels in image. Thus, the average weight of four neighbourhood pixels determine the value of the unknown pixel, in contrast to nearest-neighbour algorithm. The comparison between the results of provided images
 is shown in Figure 1, (i) the original image, (ii) Nearest neighbour Interpolation results and (iii) Bilinear Interpolation results.
 
-###Implementation
+### Implementation
 The algorithm has been realized in the implementation `BitmapOperation ::performBilinear` method. That is supported by utility methods and suboperation methods `BitmapOperation :: vectorToData`, `BitmapOperation ::copyOldToNewPixels`, `BitmapOperation :: borderRows` and `BitmapOperation :: borderCols` methods. 
 
